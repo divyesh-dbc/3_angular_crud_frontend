@@ -1,1 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(assets/css/common.scss);
+
+
+
+* {
+    box-sizing: border-box;
+}
+body {
+    display: block;
+    margin: 0px;
+}
+
+.main_page_public {
+    display: block;
+    width: 100%;
+    float: left;
+}
+
+.main_page_public .section {
+    width: 50%;
+    float: left;
+    height: 100vh;
+}
+
+.main_page_public .section.left {
+    /* background-color: black; */
+    background-image: url(assets/img/Background.svg);
+    color: white;
+}
+
+.main_page_public .section.left .logo {
+    height: 50px;
+    margin: 100px 0px 0px 100px;
+}
+
+.main_page_public .section.left .title_desc {
+    margin: 0px 100px;
+    transform: translateY(40vh);
+    font-family: Inter;
+}
+
+.main_page_public .section.left .title {
+    font-size: 40px;
+    font-family: Inter
+}
+
+.main_page_public .section.left .description {
+    font-size: 24px;
+}
+
+.main_page_public .section.right {
+    padding: 30px 70px;
+    color: #000;
+    background-color: rgb(228, 228, 228);
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
+}
+
+.main_page_public .section.right .title_desc {
+    margin-bottom: 20px;
+}
+
+.main_page_public .section.right .title {
+    font-size: 32px;
+    font-family: 'Inter';
+}
+
+.main_page_public .section.right .description {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.control_item {
+    margin-bottom: 20px;
+}
+
+.control_item.w_50 {
+    width: 50%;
+    float: left;
+}
+
+.forget_pass{
+    float: right;
+    margin-bottom: 20px;
+}
+
+.description2{
+    margin-top: 100px;
+}
+
+@import url(assets/css/responsive.scss);
+@import url(assets/css/admin.scss);

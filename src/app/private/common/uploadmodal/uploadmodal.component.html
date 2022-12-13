@@ -1,0 +1,46 @@
+
+
+	<!-- <div class="modal-header">
+		
+	</div> -->
+	<div class="modal-body" id="popup" >
+		<div>
+      <div class="upload">
+          <div class="upload_txt">Upload Files</div>
+          <a href="#" (click)="activeModal.dismiss('Cross click')"><i class="fa fa-xmark"></i></a>
+      </div>
+      <div class="browse_box">
+          <!-- <input type="file" class="browse_box"> -->
+          <div class="cloud_icon">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <div class="cloud_desc">
+
+                  Drop files here or <a href="#">Browse</a>
+              </div>
+          </div>
+      </div>
+      <div class="form_control">
+          <form id="popup_form" novalidate>
+              <div class="control_item">
+                  <div class="popup_control pr_15">
+                      <label for="filename" class="label">File Name</label>
+                      <input type="text" placeholder="File Name" class="input" />
+                      
+                  </div>
+                  <div class="popup_control pl_15">
+                      <label for="contribution" class="label">Contribution</label>
+                      <input type="text" placeholder="Invite Someone" class="input" />
+                  </div>
+              </div>
+              <div class="control_btn">
+                  <a href="#" (click)="activeModal.dismiss('Cross click')" class="popup_button primary_light">Cancel</a>
+                  <a href="#" class="popup_button primary_dark ml_10">Save</a>
+              </div>
+          </form>
+
+      </div>
+  </div>
+	</div>
+	<!-- <div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+	</div> -->

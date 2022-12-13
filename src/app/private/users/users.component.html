@@ -1,0 +1,135 @@
+<div id="contents" class="stick_table" style="padding: 0px; margin: 10px;">
+    <button class="btn btn-md btn-success float-right mr-3" type="button">
+        <i class="fa fa-search"></i> Search</button>
+    <!-- <div class="input-group float-left" style="width: 400px">
+        <div class="d-flex justify-content-center">
+          <div class="loading" id="loader" style="display: none">
+            Loading&#8230;
+          </div>
+        </div>
+        <input
+          type="text"
+          autocomplete="off"
+          id="search_text"
+          class="form-control col-sm-7"
+          placeholder="Search.."
+        />
+        <div class="input-group-append">
+          <span
+            class="input-group-text"
+            id="basic-addon2"
+            onclick="getList()"
+            style="cursor: context-menu"
+            >Search</span
+          >
+        </div>
+        <span
+          class="input-group-text ml-2"
+          id="clear_search_text"
+          style="cursor: context-menu"
+          >Clear</span
+        >
+      </div> -->
+    <table class="table bg-white" id="data_table">
+        <thead>
+          <tr>
+            <th
+              scope="col"
+              class="sorting asc"
+              data-column="u.firstname"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              FirstName
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.lastname"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              LastName
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.email"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Email
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.mobile"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Mobile
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.gender"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Gender
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.date1"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Date of Birth
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.city"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              City
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.pin"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Area Pin
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.state"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              State
+            </th>
+            <th
+              scope="col"
+              class="sorting"
+              data-column="u.qualification"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Qualification
+            </th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="no_data">
+            <td colspan="11">No data found</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

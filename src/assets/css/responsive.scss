@@ -1,0 +1,62 @@
+/* @import url(common.css); */
+
+@media only screen and (max-width: 1000px) {
+
+    .main_page .section.right {
+        padding: 0px 30px;
+        align-items: center;
+        height: 100vh;
+        display: inline-block;
+    }
+   
+}
+
+@media only screen and (max-width: 768px) {
+    .main_page .section.left {
+        display: none;
+    }
+
+    .main_page .section {
+        width: 100%;
+        float: left;
+        height: 100vh;
+    }
+
+    .main_page .section.right {
+        padding: 10px 30px;
+        align-items: center;
+        height: 100vh;
+        display: inline-block;
+    }
+   
+}
+
+@media only screen and (max-width: 400px) {
+    .main_page .section {
+        width: 100%;
+        float: left;
+        height: 100vh;
+    }
+
+    .main_page .section.left {
+        display: none;
+    }
+
+    .main_page .section.right {
+        padding: 10px 30px;
+        align-items: center;
+        height: 100vh;
+        display: inline-block;
+    }
+
+    .main_page .control_item {
+        width: 100%;
+        float: left;
+        padding: 0px;
+    }
+
+    #signup_form {
+        width: 100%;
+
+    } 
+}

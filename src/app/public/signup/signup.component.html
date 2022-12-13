@@ -1,0 +1,278 @@
+
+
+  <body>
+    <div class="main_page_public" id="signup">
+      <app-left-section></app-left-section>
+
+      <div class="section right">
+        <form
+          id="signup_form"
+          name="signup_form"
+          method="post"
+          novalidate
+          #f="ngForm"
+          (ngSubmit)="onRegister(f)"
+        >
+          <div *ngIf="step == 1">
+            <div class="title_desc">
+              <div class="title">Create account</div>
+              <div class="description">
+                Already have an account? <a [routerLink]="['/login']"> Login</a>
+              </div>
+            </div>
+            <div class="form_controls">
+              <div class="control_item w_50 pr_15">
+                <input
+                  type="text"
+                  class="control"
+                  name="firstname"
+                  id="firstname"
+                  placeholder="First Name"
+                  autocomplete="off"
+                  [(ngModel)]="userDetail.first_name"
+                  required
+                  #firstname="ngModel"
+                  minlength="4"
+                />
+                <div
+                  *ngIf="
+                    firstname.invalid &&
+                    (firstname.dirty || firstname.touched || f.submitted)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="firstname.errors?.['required']">
+                    firstname is required.
+                  </div>
+                  <div *ngIf="firstname.errors?.['minlength']">
+                    firstname have at least 4 char.
+                  </div>
+                </div>
+              </div>
+              <div class="control_item w_50 pl_15">
+                <input
+                  type="text"
+                  class="control"
+                  name="lastname"
+                  id="lastname"
+                  placeholder="Last Name"
+                  autocomplete="off"
+                  [(ngModel)]="userDetail.last_name"
+                  required
+                  #lastname="ngModel"
+                  minlength="4"
+                />
+                <div
+                  *ngIf="
+                    lastname.invalid &&
+                    (lastname.dirty || lastname.touched || f.submitted)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="lastname.errors?.['required']">
+                    lastname is required.
+                  </div>
+                  <div *ngIf="lastname.errors?.['minlength']">
+                    lastnamehave at least 4 char.
+                  </div>
+                </div>
+              </div>
+              <div class="control_item">
+                <input
+                  type="text"
+                  class="control"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  autocomplete="off"
+                  [(ngModel)]="userDetail.email"
+                  required
+                  #email="ngModel"
+                  [pattern]="emailPattern"
+                />
+                <div
+                  *ngIf="
+                    email.invalid &&
+                    (email.dirty || email.touched || f.submitted)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="email.errors?.['required']">
+                    email is required.
+                  </div>
+
+                  <div *ngIf="email.errors?.['pattern']">
+                    Invalid email address.
+                  </div>
+                </div>
+              </div>
+              <div class="control_item">
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  class="control"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  autocomplete="off"
+                  [(ngModel)]="userDetail.password"
+                  required
+                  #password="ngModel"
+                  [pattern]="passwordPattern"
+                />
+                <i
+                  class="fa {{
+                    !showPassword ? 'fa-eye-slash' : 'fa-eye'
+                  }} pass_icon"
+                  (click)="showPassword = !showPassword"
+                ></i>
+                <div
+                  *ngIf="
+                    password.invalid &&
+                    (password.dirty || password.touched || f.submitted)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="password.errors?.['required']">
+                    password is required.
+                  </div>
+                  <div *ngIf="password.errors?.['pattern']">
+                    password must be at least 8 characters long contain at
+                    least one number, uppercase, lowercase and special
+                    character.
+                  </div>
+                </div>
+              </div>
+              <div class="control_item">
+                <input
+                  [type]="showCPassword ? 'text' : 'password'"
+                  class="control"
+                  name="cpassword"
+                  id="cpassword"
+                  placeholder="confirm Password"
+                  autocomplete="off"
+                  [(ngModel)]="userDetail.cpassword"
+                  required
+                  #cpassword="ngModel"
+                  [pattern]="passwordPattern"
+                />
+                <i
+                  class="fa {{
+                    !showCPassword ? 'fa-eye-slash' : 'fa-eye'
+                  }} pass_icon"
+                  (click)="showCPassword = !showCPassword"
+                ></i>
+                <div
+                  *ngIf="
+                    cpassword.invalid &&
+                    (cpassword.dirty || cpassword.touched || f.submitted)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="cpassword.errors?.['required']">
+                    cpassword is required.
+                  </div>
+                  <div *ngIf="cpassword.errors?.['pattern']">
+                    cpassword must be at least 8 characters long contain at
+                    least one number, uppercase, lowercase and special
+                    character.
+                  </div>
+                </div>
+                <div class="error" *ngIf="!cpassword.errors?.['required'] && userDetail.password != userDetail.cpassword&& (cpassword.dirty || cpassword.touched)">
+                  Password & Confirm Password Not Match
+                </div>
+              </div>
+              <div class="control_item">
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="condition"
+                  id="condition"
+                  [(ngModel)]="userDetail.condition"
+                  required
+                  #condition="ngModel"
+                />
+                <label for="condition" class="label"
+                  >I agree to DopeSass <a href="#">Terms of service</a> &
+                  <a href="#">Privacy policy</a></label
+                >
+                <div
+                  *ngIf="
+                    condition.invalid &&
+                    (condition.dirty || condition.touched || f.submitted)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="condition.errors?.['required']">
+                    * please agree with terms & condition.
+                  </div>
+                </div>
+                <div class="error" *ngIf="error">
+                  {{ msg }}
+                </div>
+              </div>
+              <div class="control_item">
+                <button
+                  class="button button_primary"
+                  id="submit_form"
+                  type="submit"
+                  [disabled]="!f.valid"
+                >
+                  Create Account
+                </button>
+              </div>
+              <hr />
+              <div class="control_item">
+                <button
+                  type="button"
+                  class="button button_light"
+                  id="google_login"
+                >
+                  <i class="fa fa-google"></i> Continue with Google
+                </button>
+              </div>
+              <div class="control_item">
+                <button
+                  type="button"
+                  class="button button_light"
+                  id="apple_login"
+                >
+                  <i class="fa fa-apple"></i> Continue with Apple
+                </button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="step == 2">
+            <div class="title_desc">
+              <div class="title">Verify your Email</div>
+              <div class="description">
+                We have sent a verification email to n****e@e***e.com.
+              </div>
+            </div>
+            <div class="description2">
+              Didn't receive the email? Check spam or promotion folder or
+            </div>
+            <div class="description2" *ngIf="countDown">
+              You can re-send mail in {{countDown}} seconds
+            </div>
+            <div class="form_controls">
+              <div class="control_item">
+                <button type="button" class="button button_primary" id="resend_mail" 
+                (click)="onResendMail();" [disabled]="!enable">
+                  Resend Email
+                </button>
+              </div>
+              <div class="control_item">
+                <button
+                  [routerLink]="['/login']"
+                  class="button button_light"
+                  id="back_login"
+                >
+                  Back to login
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+ 

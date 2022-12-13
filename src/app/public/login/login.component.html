@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="main_page_public" id="signup">
+      <app-left-section></app-left-section>
+      <div class="section right">
+        <form
+          id="login_form"
+          name="login_form"
+          novalidate
+          #f="ngForm"
+          (ngSubmit)="onLoggedin(f)"
+          method="post"
+        >
+          <div class="title_desc">
+            <div class="title">Welcome Back</div>
+            <div class="description">
+              Don't have an account? <a [routerLink]="['/signup']"> Sign Up</a>
+            </div>
+          </div>
+          <div class="form_controls">
+            <div class="control_item">
+              <input
+                type="text"
+                class="control"
+                name="email"
+                id="email"
+                placeholder="Email"
+                autocomplete="off"
+                [(ngModel)]="itemData.email"
+                #email="ngModel"
+                [pattern]="emailPattern"
+                required
+              />
+              <div *ngIf="email.invalid && (email.dirty || email.touched || f.submitted)" 
+              class="error">
+                <div *ngIf="email.errors?.['required']">email is required.</div>
+
+                <div *ngIf="email.errors?.['pattern']">
+                  Invalid email address.
+                </div>
+                <!-- <div  class="error" *ngIf="error">
+                  {{msg}}
+                  </div>
+                 -->
+              </div>
+             
+
+              
+                
+            </div>
+            <div class="control_item">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="control"
+                name="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="off"
+                [(ngModel)]="itemData.password"
+                #password="ngModel"
+                required
+                [pattern]="passwordPattern"
+              />
+              <i
+                class="fa {{
+                  !showPassword ? 'fa-eye-slash' : 'fa-eye'
+                }} pass_icon"
+                (click)="showPassword = !showPassword"
+              ></i>
+              <div
+                *ngIf="
+                  password.invalid &&
+                  (password.dirty || password.touched || f.submitted)
+                "
+                class="error"
+              >
+                <div *ngIf="password.errors?.['required']">
+                  password is required.
+                </div>
+                <div *ngIf="password.errors?.['pattern']">
+                  password must be at least 8 characters long contain at least
+                  one number, uppercase, lowercase and special character.
+                </div>
+              </div>
+            </div>
+            
+            <div class="control_item">
+              <span  class="error " *ngIf="error">
+                {{msg}}
+                </span>
+              <a
+                [routerLink]="['/forgotpassword']"
+                class="forget_pass"
+                id="forget_password"
+                >Forget Password</a
+              >
+            </div>
+            
+            <div class="control_item">
+              <button
+                type="submit"
+                class="button button_primary"
+                id="login"
+                [disabled]="!f.valid"
+              >
+                Login
+              </button>
+            </div>
+            <hr />
+            <div class="control_item">
+              <button
+                type="button"
+                class="button button_light"
+                id="google_login"
+              >
+                <i class="fa fa-google"></i> Continue with Google
+              </button>
+            </div>
+            <div class="control_item">
+              <button
+                type="button"
+                class="button button_light"
+                id="apple_login"
+              >
+                <i class="fa fa-apple"></i> Continue with Apple
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

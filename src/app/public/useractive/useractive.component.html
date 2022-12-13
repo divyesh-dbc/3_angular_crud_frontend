@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Reset Password</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="main_page_public" id="signup">
+      <app-left-section></app-left-section>
+      <div class="section right">
+        <form
+          id="signup_form"
+          name="signup_form"
+          method="post"
+          #f="ngForm"
+          novalidate
+        >
+
+          <div *ngIf="step == 2">
+            <div class="title_desc mt_15">
+              <div class="sucess ">
+                <img src="../../../assets/img/sucess.svg" />
+                <div class="description">User Activated</div>
+              </div>
+            </div>
+          
+          </div>
+          <div *ngIf="step == 3">
+            <div class="title_desc mt_15">
+              <div class="sucess">
+                <img src="../../../assets/img/error.svg" />
+                <div class="description">Try Again</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_controls">
+            <div class="control_item">
+              <button
+                [routerLink]="['/login']"
+                class="button button_light"
+                id="back_login"
+              >
+                Back to login
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
