@@ -14,7 +14,6 @@ import {
 import { map } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 
-
 import * as crypto from 'crypto-js';
 // var crypto = require("crypto-js");
 import { environment } from '../../environments/environment';
@@ -41,12 +40,44 @@ const base_url_path = environment.pathUrl;
   providedIn: 'root',
 })
 export class AuthService {
+  public contentChangeTriggerMsg = new BehaviorSubject<string>('');
+  changeContentReceive = this.contentChangeTriggerMsg.asObservable();
+  isActive:any=false;
   userDetail: any = {
+    id: '',
+    first_name: '',
+    last_name: '',
     email: '',
-    password:'',
-    first_name:'',
-    last_name:'',
+    mobile: '',
+    gender: '',
+    date1: '',
+    address: '',
+    city: '',
+    pin: '',
+    state: '',
+    qualification: '',
+    specialization: '',
+    user_image: { file_src: '' },
   };
+  userItem: any = {
+    
+  };
+  should_open: any = false;
+
+  specializationList = [
+    { name: 'computerscience', title: 'Computer Science', checked: false },
+    {
+      name: 'informationtechnology',
+      title: 'Information Technology',
+      checked: false,
+    },
+    {
+      name: 'computerarchitecture',
+      title: 'Computer Architecture',
+      checked: false,
+    },
+    { name: 'telecommunication', title: 'Tele Communication', checked: false },
+  ];
   // generalSettings: any = {
   //   admin_email: { value: '' },
   //   noreply_email: { value: '' },
@@ -102,15 +133,14 @@ export class AuthService {
   // domain: any = '';
 
   constructor(
-     private httpService: HttpClient,
+    private httpService: HttpClient,
     public router: Router,
     public calander: NgbCalendar,
     public formatter: NgbDateParserFormatter,
     public titleService: Title
   ) {
-    
     const version = localStorage.getItem('version');
-    
+
     // console.log('router', window.location.hostname);
     // console.log('location.pathname', location.pathname.toString().split('/#/')[0]);
     if (
@@ -130,7 +160,7 @@ export class AuthService {
     localStorage.removeItem('viewcontent_filter');
     this.userDetail = {
       email: '',
-      password:''
+      password: '',
     };
     console.log('this.router.url', this.router.url);
     if (this.router.url != '/signup') {
@@ -209,7 +239,7 @@ export class AuthService {
   }
   changePassword(obj: any) {
     const data = JSON.parse(JSON.stringify(obj));
-    
+
     delete data.cpassword;
     data.password = crypto.AES.encrypt(
       data.password,
@@ -231,14 +261,12 @@ export class AuthService {
   forgotPassword(obj: any) {
     const data = JSON.parse(JSON.stringify(obj));
     return this.httpService.post(base_url + constant.FORGOTPASSWORD, data).pipe(
-      
       map((res: any) => {
         return res;
-        
       })
     );
   }
-  
+
   validateResetToken(token: any) {
     return this.httpService
       .post(
@@ -270,31 +298,28 @@ export class AuthService {
         })
       );
   }
-  resendEmail(id:number) {
-    
-    return this.httpService.post(base_url + constant.RESEND_MAIL, {id:id}).pipe(
-      
-      map((res: any) => {
-        return res;
-        
-      })
-    );
+  resendEmail(id: number) {
+    return this.httpService
+      .post(base_url + constant.RESEND_MAIL, { id: id })
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
   }
 
-  statusUpdate(obj: any,token: any) {
+  statusUpdate(obj: any, token: any) {
     const data = JSON.parse(JSON.stringify(obj));
-    data.token=token;
-    
-    return this.httpService.post(base_url + constant.UPDATE_USERS_STATUS, data, {
-      headers: new HttpHeaders().set('authorization', 'JWT ' + token),
-    }).pipe(
-      
-      map((res: any) => {
-        return res;
-        
+    data.token = token;
+
+    return this.httpService
+      .post(base_url + constant.UPDATE_USERS_STATUS, data, {
+        headers: new HttpHeaders().set('authorization', 'JWT ' + token),
       })
-    );
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
   }
 }
-
-

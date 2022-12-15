@@ -26,6 +26,7 @@
     "highcharts": "^10.3.2",
     "moment": "^2.29.4",
     "ngx-image-cropper": "^6.3.1",
+    "ngx-pagination": "^6.0.3",
     "ngx-toast": "^1.1.4",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.15",

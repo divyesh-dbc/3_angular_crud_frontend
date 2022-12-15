@@ -28,14 +28,6 @@ import { ProfileComponent } from './private/profile/profile.component';
 @NgModule({
     declarations: [
         AppComponent,
-        
-         
-       
-        // SignupComponent,
-        // ForgetpasswordComponent,
-        // ResetpasswordComponent,
-        // SidebarComponent,
-        // NavbarComponent,
     ],
     providers: [AuthGuard, MenuResolve, AuthRoleGuard,
         {

@@ -8,6 +8,11 @@ import { NavbarModule } from '../common/navbar/navbar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'angular-highcharts';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedPipesModule } from 'src/app/shared/pipes/shared-pipes.module';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateUserModule } from '../create-user/create-user.module';
 
 
 @NgModule({
@@ -19,9 +24,13 @@ import { ChartModule } from 'angular-highcharts';
     HeaderModule,
     HttpClientModule,
     FormsModule,
-    ChartModule
+    ChartModule,
+    NgxPaginationModule,
+    SharedPipesModule,
+    NgbModule,
+    CreateUserModule
   ],
   exports:[UsersComponent],
-  providers:[]
+  providers:[AuthService]
 })
 export class UsersModule { }

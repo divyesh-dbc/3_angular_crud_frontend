@@ -7,6 +7,7 @@ import { UseractiveModule } from '../public/useractive/useractive.module';
 import { ChangepasswordModule } from './common/changepassword/changepassword.module';
 import { ProfileModule } from './profile/profile.module';
 import { UsersModule } from './users/users.module';
+import { ChatModule } from './chat/chat.module';
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
       {
         path: 'users',
         loadChildren: () => UsersModule,
+        resolve: { menu: MenuResolve },
+      },
+      {
+        path: 'chat',
+        loadChildren: () => ChatModule,
         resolve: { menu: MenuResolve },
       },
     ],

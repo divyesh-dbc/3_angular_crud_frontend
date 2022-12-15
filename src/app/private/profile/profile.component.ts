@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
   state:'',
   qualification:'',
   specialization:'',
-   user_image: { file_src: '' }
+   user_image:{file_src:''}
  };
   accept_file: any = {
       image: [".png", ".jpeg", ".jpg"]
@@ -158,7 +158,8 @@ saveItem(f: NgForm) {
   formData.append('status', 'active');
   // if (this.imageChangedEvent && this.imageChangedEvent.length) {
   //     formData.append('user_image', this.imageChangedEvent.file[0], this.imageChangedEvent.file_name);
-  // }
+    // }
+
   if (this.userDetail.user_image.file && this.userDetail.user_image.file.length) {
     formData.append('user_image', this.userDetail.user_image.file[0], this.userDetail.user_image.file_name);
 }

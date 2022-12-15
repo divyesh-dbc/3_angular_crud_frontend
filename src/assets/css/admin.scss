@@ -228,7 +228,7 @@ background-color: #E5E5E5   ;
     line-height: 40px;
 }
 
-.main_page .right .admin_body{
+.main_page .right .admin_body {
     margin-top: 122px;
     display: inline-block;
     width: 100%;
@@ -615,11 +615,13 @@ table th.sort.desc:after {
 
     background: #0054fc;
 }
+
 .modal-content {
-    
+
     width: fit-content;
-    
+
 }
+
 /* .modal a.close-modal{
     display: none;
 } */
@@ -631,14 +633,15 @@ table th.sort.desc:after {
     width: fit-content;
 
 }
-.change_password .form_control{
-    
+
+.change_password .form_control {
+
     margin-bottom: 10px;
     display: grid;
 }
 
-.required{
-   color: red;
+.required {
+    color: red;
 }
 
 .change_password .form_control .form_input {
@@ -647,10 +650,11 @@ table th.sort.desc:after {
     width: 300px;
     border-radius: 10px;
     border: 1px solid #d7d2d2;
-    
+
 }
-.changepass_icon::before{
-   
+
+.changepass_icon::before {
+
     float: right;
     position: relative;
     margin-top: -25px;
@@ -663,7 +667,7 @@ table th.sort.desc:after {
     gap: 10px !important;
 }
 
-.change_password .form_btn .pass_button{
+.change_password .form_btn .pass_button {
     background-color: #15b9b9;
     border: none;
     border-radius: 15px;
@@ -672,21 +676,21 @@ table th.sort.desc:after {
     color: #fff;
 }
 
-.change_password .form_btn .pass_button.dark{
+.change_password .form_btn .pass_button.dark {
     background-color: #495050;
-    
+
 }
 
-.profile_div{
-    border: 1px solid #ced4da ;
+.profile_div {
+    border: 1px solid #ced4da;
     margin: 50px;
     border-radius: 5px;
     padding: 15px;
-    background-color:#fff;
+    background-color: #fff;
 }
 
-.profile_div .formcontrol{
-    
+.profile_div .formcontrol {
+
     margin-bottom: 10px;
     margin-top: 5px;
     background: #f7f7f7;
@@ -695,33 +699,33 @@ table th.sort.desc:after {
 
 }
 
-textarea{
+textarea {
     resize: none;
 }
 
 .preview_image_span {
-    width   : 90px;
-    
-    display : inherit;
+    width: 90px;
+
+    display: inherit;
     position: relative;
-    float   : right;
+    float: right;
 }
 
 .preview_image_span .preview_t_image {
-    width        : 100%;
-    height       : auto;
+    width: 100%;
+    height: auto;
     border-radius: 5px;
 }
 
 .preview_image_span i {
     position: absolute;
-    right   :5px;
-    top     :5px;
-    cursor  : pointer;
-    color   :#000000;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    color: #000000;
 }
 
-.form-control[readonly]{
+.form-control[readonly] {
     background-color: #c1c4c7;
     opacity: 3;
     pointer-events: none;
@@ -734,8 +738,7 @@ textarea{
 }
 
 #data_table thead tr th.sorting::after {
-    position: absolute;
-    right: 5px;
+
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
@@ -753,4 +756,365 @@ textarea{
 #data_table thead tr th.sorting.desc::after {
     content: "\f0dd";
     color: black;
+}
+
+.form-select {
+    width: unset;
+    margin-right: 5px;
+}
+
+.inner_list {
+    display: none;
+}
+
+.profile {
+    width: 35px;
+    height: 35px;
+    background-color: #E5EDFF;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile.bg {
+    width: 40px;
+    height: 40px;
+}
+
+.profile.sm {
+    width: 30px;
+    height: 30px;
+}
+
+.status {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    float: left;
+}
+
+.status.status_active {
+    background: #14C25A;
+}
+
+.status_deactive {
+    background: red;
+}
+
+
+.admin_body .users {
+    margin: 30px;
+    border: 1px solid rgba(23, 24, 50, 0.05);
+    float: left;
+    border-radius: 5px;
+}
+
+.admin_body .users .user_list {
+    background-color: #fff;
+    border: 1px solid rgba(23, 24, 50, 0.05);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 20px 6px 11px 20px;
+    width: 286px;
+    float: left;
+}
+
+.admin_body .users .user_list .active_user {
+    display: grid;
+    height: 78px;
+}
+
+.admin_body .users .user_list .active_user .active_info {
+    display: inline-block;
+}
+
+.admin_body .users .user_list .active_user .active_info .title {
+    float: left;
+    font-weight: 500;
+    font-size: 18px;
+
+}
+
+.admin_body .users .user_list .active_user .active_info .count {
+    float: right;
+    width: 30px;
+    height: 19px;
+    background-color: #e8f9ef;
+    color: #14C25A;
+    font-weight: 450;
+    font-size: 12px;
+    border-radius: 23px;
+    text-align: center;
+    line-height: 19px;
+}
+
+.admin_body .users .user_list .active_user .active_profile {
+    display: inline-flex;
+    padding-top: 20px;
+}
+
+.admin_body .users .user_list .search {
+    margin-top: 20px;
+    margin-bottom: 9px;
+}
+
+.admin_body .users .user_list .search .search_txt {
+    width: 246px;
+    height: 35px;
+    border: 1px solid #F4F4F4;
+    border-radius: 5px;
+    font-size: 12px;
+    padding-left: 33px;
+}
+
+.admin_body .users .user_list .search i {
+    font-size: 8px;
+    width: 33px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    float: left;
+    position: relative;
+    margin-top: -35px;
+    cursor: pointer;
+
+}
+
+.admin_body .users .user_list .chat_list {
+    height: calc(100vh - 293px);
+    overflow: auto;
+
+}
+
+
+.admin_body .users .user_list .chat_list .list {
+    display: inline-flex;
+    padding-top: 13px;
+    height: 66px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.admin_body .users .user_list .chat_list .list.current {
+    border-right: 2px solid #2D74FF;
+    background: linear-gradient(90deg, rgba(45, 116, 255, 0.02) 5%, rgba(45, 116, 255, 0.03) 100%);
+}
+
+/* .admin_body .users .user_list .chat_list .list .message{
+   
+ } */
+
+.admin_body .users .user_list .chat_list .list .message .user_name {
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-flex;
+}
+
+.admin_body .users .user_list .chat_list .list .message .user_message {
+    color: #acacb5;
+    font-weight: 450;
+    font-size: 10px;
+    margin-top: 8px;
+}
+
+.admin_body .users .user_list .chat_list .list .message hr {
+    border: 0.5px solid #F4F4F4;
+    width: 214px;
+}
+
+.admin_body .users .chat_body {
+    height: calc(100vh - 296px);
+    overflow: auto;
+    padding-top: 43px;
+}
+
+.admin_body .users .user_details {
+    float: right;
+    width: calc(100% - 286px);
+    padding: 30px;
+    padding-bottom: 10px;
+
+    background-color: #ffffff;
+    font-weight: normal;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+
+.admin_body .users .user_details .current_user {
+    display: inline-block;
+}
+
+.admin_body .users .user_details .user_profile {
+    float: left;
+}
+
+.admin_body .users .user_details .user_info {
+    float: left;
+}
+
+.admin_body .users .user_details .user_info .user_name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #171832;
+}
+
+.admin_body .users .user_details .user_info .user_status {
+    font-weight: 450;
+    color: #7B7B8B;
+    font-size: 10px;
+    line-height: 15px;
+    display: inline-block;
+}
+
+.admin_body .users .user_details .communication {
+    float: right;
+    gap: 15px;
+    display: flex;
+}
+
+.admin_body .users .user_details .communication i {
+    padding: 9px;
+    border-radius: 50%;
+    background: #F4F4F4;
+    font-size: 12px;
+    color: #9E9EA9;
+    cursor: pointer;
+}
+
+.admin_body .users .user_details .communication i.fa-phone {
+    background: #2D74FF;
+    color: #ffffff;
+}
+
+.admin_body .users .user_details .received {
+    display: inline-block;
+    width: 100%;
+}
+
+.admin_body .users .user_details .received .chat {
+    border-radius: 40px 7px 7px 7px;
+    border: 1px solid #F4F4F4;
+    padding: 20px;
+    margin: 15px 0px 0px -30px;
+    float: left;
+    width: 60%;
+}
+
+.admin_body .users .user_details .received .chat .time {
+    color: #B5B5BD;
+    font-weight: 450;
+    font-size: 10px;
+    line-height: 15px;
+}
+
+.admin_body .users .user_details .received .chat .chat_txt {
+    color: #6A6B7C;
+    font-size: 12px;
+}
+
+.admin_body .users .user_details .sent {
+    display: inline-block;
+    width: 100%;
+}
+
+.admin_body .users .user_details .sent .sent_msg_div {
+    background: #7047EE;
+    color: #FFFFFF;
+    border-radius: 7px;
+    border: 1px solid #F4F4F4;
+    padding: 20px;
+    margin: 15px 0px 0px -15px;
+    float: right;
+    width: 60%;
+}
+
+.admin_body .users .user_details .sent .chat .sent_msg_div .time {
+    color: #A489F4;
+    font-weight: 450;
+    line-height: 15px;
+    font-size: 10px;
+}
+
+.admin_body .users .user_details .sent .chat .sent_msg_div .chat_txt {
+    color: #FFFFFF;
+    font-weight: 450;
+    line-height: 15px;
+    font-size: 12px;
+}
+
+.admin_body .users .user_details .sent .receive_status {
+    width: 100%;
+    text-align: right;
+    float: right;
+    color: #B4B4BD;
+    font-weight: 450;
+    font-size: 10px;
+}
+
+.admin_body .users .user_details .sent .receive_status .seen i {
+    color: #008000;
+}
+
+.admin_body .users .user_details .chat_footer {
+    display: inline-block;
+    border-width: 1px 0px 1px 1px;
+    margin-top: 10px;
+    width: 100%;
+    border-style: solid;
+    border-color: #F8F8F8;
+}
+
+.admin_body .users .user_details .chat_footer .ft_left {
+    float: left;
+    width: calc(100% - 123px);
+}
+
+.admin_body .users .user_details .chat_footer .ft_left .text_div {
+    height: 38px;
+}
+
+
+
+.admin_body .users .user_details .chat_footer .ft_left .attachment_div {
+    height: 32px;
+    padding-left: 21px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    background-color: #F8F8F8;
+}
+
+.admin_body .users .user_details .chat_footer .ft_left .attachment_div i {
+    cursor: pointer;
+    color: #888895;
+}
+
+textarea {
+    height: 38px;
+    line-height: 38px;
+    padding: 0px 0px 0px 25px;
+    overflow: hidden;
+    width: 100%;
+    resize: none;
+    border: 0px;
+}
+
+textarea:focus {
+    outline: none;
+    border: 1px solid #dfdddd;
+}
+
+.admin_body .users .user_details .chat_footer .ft_right .send_button {
+    width: 123px;
+    height: 70px;
+    color: #2D74FF;
+    font-size: 14px;
+    font-weight: 450;
+    cursor: pointer;
+    background: #FFFFFF;
+    border: 1px solid #F8F8F8;
+    border-radius: 7px;
+}
+
+.admin_body .users .user_details .chat_footer .ft_right .send_button:hover {
+    border: 1px solid #dfdddd;
 }

@@ -1,6 +1,6 @@
 <div class="section left">
     <div class="title">
-        Admin<i class="fa fa-bars"></i>
+        <label [routerLink]="['/dashboard']">Admin</label><i class="fa fa-bars"></i>
     </div>
     <div class="list">
         <ul class="unordered_list">
@@ -17,7 +17,9 @@
                                 class="fa-solid fa-diagram-project"></i></a>Analytics</li>
                 </ul>
             </li>
-            <li class="list_item"><a href="#"><i class="fa-solid fa-comment-dots"></i></a>Chat</li>
+            <!-- class="{{routerLink=='user' ? 'active' : ''}}"  -->
+            <li class="list_item " (click)="authService.isActive = true"><a [routerLink]="['/users']"><i class="fa-solid fa-users"></i>Users</a></li>
+            <li class="list_item"><a [routerLink]="['/chat']"><i class="fa-solid fa-comment-dots"></i>Chat</a></li>
             <li class="list_item"><a href="#"><i class="fa-solid fa-envelope"></i></a>Email</li>
             <li class="list_item"><a href="#"><i class="fa-solid fa-calendar-days"></i></a>Calendar</li>
             <li class="list_item"><a href="#"><i class="fa-solid fa-list-check"></i></a>Task </li>

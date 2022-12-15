@@ -1,136 +1,548 @@
-<div id="contents" class="stick_table" style="padding: 0px; margin: 10px;">
-    <button class="btn btn-md btn-success float-right mr-3" type="button">
-        <i class="fa fa-search"></i> Search</button>
-    <!-- <div class="input-group float-left" style="width: 400px">
-        <div class="d-flex justify-content-center">
-          <div class="loading" id="loader" style="display: none">
-            Loading&#8230;
-          </div>
-        </div>
-        <input
-          type="text"
-          autocomplete="off"
-          id="search_text"
-          class="form-control col-sm-7"
-          placeholder="Search.."
-        />
-        <div class="input-group-append">
-          <span
-            class="input-group-text"
-            id="basic-addon2"
-            onclick="getList()"
-            style="cursor: context-menu"
-            >Search</span
-          >
-        </div>
+<div id="contents" class="stick_table" style="padding: 0px; margin: 10px">
+  <!-- <button class="btn btn-md btn-success float-right mr-3" type="button">
+    <i class="fa fa-search"></i> Search
+  </button> -->
+  <div *ngIf="authService.should_open">
+    <app-create-user></app-create-user>
+  </div>
+  <div class="d-inline-flex w-100 p-2">
+    <div *ngFor="let item of filter.status" class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="{{ item.value }}_search"
+        name="{{ item.value }}_search"
+        value="{{ item.value }}"
+        style="cursor: pointer"
+        [(ngModel)]="item.isChecked"
+        (change)="getListInitial()"
+        
+      />
+      <label
+        class="form-check-label"
+        for="{{ item.value }}_search"
+        style="cursor: pointer"
+        >{{ item.text }}</label
+      >
+    </div>
+    <!-- <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="active_search"
+        value="active"
+        style="cursor: pointer"
+        #active_search
+        [(ngModel)]="filter.active_search"
+      />
+      <label
+        class="form-check-label"
+        for="active_search"
+        style="cursor: pointer"
+        >Active</label
+      >
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="inactive_search"
+        value="inactive"
+        style="cursor: pointer"
+      />
+      <label
+        class="form-check-label"
+        for="inactive_search"
+        style="cursor: pointer"
+        >Inavtive</label
+      >
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="deleted_search"
+        value="option3"
+        style="cursor: pointer"
+      />
+      <label
+        class="form-check-label"
+        for="deleted_search"
+        style="cursor: pointer"
+        >Deleted</label
+      >
+    </div> -->
+    <select class="form-select" id="gender_search" name="gender_search"
+     #gender_search
+    [(ngModel)]="filter.gender_search"
+    (change)="getListInitial()">
+      <option value="">--Gender--</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+
+    <select class="form-select" id="qualification_search" name="qualification_search"
+    #qualification_search
+    [(ngModel)]="filter.qualification_search"
+    (change)="getListInitial()">
+      <option value="">-Qualification-</option>
+      <option value="bba">BBA</option>
+      <option value="bca">BCA</option>
+      <option value="bcom">BCom</option>
+    </select>
+    <div class="input-group" style="width: 400px">
+      <input
+        type="text"
+        autocomplete="off"
+        id="search_text"
+        class="form-control col-sm-7"
+        placeholder="Search.."
+        #search_text
+        [(ngModel)]="filter.search_text"
+        (keyup.enter)="onEnter()"
+      />
+      <div class="input-group-append pe-auto">
         <span
-          class="input-group-text ml-2"
-          id="clear_search_text"
-          style="cursor: context-menu"
-          >Clear</span
+          class="input-group-text"
+          id="basic-addon2"
+          (click)="getListInitial()"
+          style="cursor: pointer"
+          >Search</span
         >
-      </div> -->
-      
-    <table class="table bg-white" id="data_table">
-        <thead>
-          <tr>
-            <th
+      </div>
+      <span
+        class="input-group-text mx-2"
+        id="clear_search_text"
+        style="cursor: pointer"
+        (click)="clearSearch()"
+        >Clear</span
+      >
+    </div>
+    <button
+      type="submit"
+      class="btn btn-secondary btn-md"
+      id="AddButton"
+      (click)="openEdit({})"
+    >
+      Add New User
+    </button>
+  </div>
+  <table class="table bg-white" id="data_table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'first_name' ? sortbyService.direction : ''
+          "
+          (click)="sortbyService.sort('first_name'); getListInitial()"
+        >
+          FirstName
+        </th>
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'last_name' ? sortbyService.direction : ''
+          "
+          (click)="sortbyService.sort('last_name'); getListInitial()"
+        >
+          LastName
+        </th>
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'email' ? sortbyService.direction : ''
+          "
+          (click)="sortbyService.sort('email'); getListInitial()"
+        >
+          Email
+        </th>
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'mobile' ? sortbyService.direction : ''
+          "
+          (click)="sortbyService.sort('mobile'); getListInitial()"
+        >
+          Mobile
+        </th>
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'gender' ? sortbyService.direction : ''
+          "
+          (click)="sortbyService.sort('gender'); getListInitial()"
+        >
+          Gender
+        </th>
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'date1' ? sortbyService.direction : ''
+          "
+          (click)="sortbyService.sort('date1'); getListInitial()"
+          scope="col"
+        >
+          Date of Birth
+        </th>
+
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'qualification'
+              ? sortbyService.direction
+              : ''
+          "
+          (click)="sortbyService.sort('qualification'); getListInitial()"
+          scope="col"
+        >
+          Qualification
+        </th>
+        <th
+          scope="col"
+          class="sorting"
+          [ngClass]="
+            sortbyService.column == 'status' ? sortbyService.direction : ''
+          "
+          (click)="sortbyService.sort('status'); getListInitial()"
+          scope="col"
+        >
+          Status
+        </th>
+        <th style="min-width: 100px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+            <td
               scope="col"
               class="sorting asc"
               data-column="u.firstname"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              FirstName
-            </th>
-            <th
+              Riddhi
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.lastname"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              LastName
-            </th>
-            <th
+              Bhalodiya
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.email"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              Email
-            </th>
-            <th
+              riddhi@gmail.com
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.mobile"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              Mobile
-            </th>
-            <th
+              7878230301
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.gender"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              Gender
-            </th>
-            <th
+              female
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.date1"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              Date of Birth
-            </th>
-            <th
+              11/08/2002
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.city"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              City
-            </th>
-            <th
+              Ahemdabad
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.pin"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              Area Pin
-            </th>
-            <th
+              362850
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.state"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              State
-            </th>
-            <th
+              Gujarat
+            </td>
+            <td
               scope="col"
               class="sorting"
               data-column="u.qualification"
               aria-controls="data_table"
               aria-sort="ascending"
             >
-              Qualification
-            </th>
-            <th scope="col">Action</th>
+              BCA
+            </td>
+            <td scope="col">   
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-trash-can mx-2"></i>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <tr id="no_data">
-            <td colspan="11">No data found</td>
-          </tr>
-        </tbody>
-      </table>
+          <tr>
+            <td
+              scope="col"
+              class="sorting asc"
+              data-column="u.firstname"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Sumita
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.lastname"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Bhalodiya
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.email"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              riddhi@gmail.com
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.mobile"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              7878230301
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.gender"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              female
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.date1"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              11/08/2002
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.city"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Ahemdabad
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.pin"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              362850
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.state"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              Gujarat
+            </td>
+            <td
+              scope="col"
+              class="sorting"
+              data-column="u.qualification"
+              aria-controls="data_table"
+              aria-sort="ascending"
+            >
+              BCA
+            </td>
+            <td scope="col">   
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-trash-can mx-2"></i>
+            </td>
+          </tr> -->
+      <tr
+        *ngFor="
+          let item of dataList
+            | filter : searchValue
+            | paginate
+              : {
+                  itemsPerPage: sortbyService.itemsPerPage,
+                  currentPage: sortbyService.page,
+                  id: 'category_list',
+                  totalItems: totalItems
+                };
+          let i = index
+        "
+      >
+        <td>
+          {{ (sortbyService.page - 1) * sortbyService.itemsPerPage + i + 1 }}
+        </td>
+        <td>
+          {{ item.first_name }}
+        </td>
+        <td scope="col">
+          {{ item.last_name }}
+        </td>
+        <td
+          scope="col"
+          class="sorting"
+          data-column="u.email"
+          aria-controls="data_table"
+          aria-sort="ascending"
+        >
+          {{ item.email }}
+        </td>
+        <td
+          scope="col"
+          class="sorting"
+          data-column="u.mobile"
+          aria-controls="data_table"
+          aria-sort="ascending"
+        >
+          {{ item.mobile }}
+        </td>
+        <td
+          scope="col"
+          class="sorting"
+          data-column="u.gender"
+          aria-controls="data_table"
+          aria-sort="ascending"
+        >
+          {{ item.gender }}
+        </td>
+        <td
+          scope="col"
+          class="sorting"
+          data-column="u.date1"
+          aria-controls="data_table"
+          aria-sort="ascending"
+        >
+          {{ item.date1 }}
+        </td>
+
+        <td
+          scope="col"
+          class="sorting"
+          data-column="u.qualification"
+          aria-controls="data_table"
+          aria-sort="ascending"
+        >
+          {{ item.qualification }}
+        </td>
+        <td
+          scope="col"
+          class="sorting"
+          data-column="u.status"
+          aria-controls="data_table"
+          aria-sort="ascending"
+        >
+          {{ item.status }}
+        </td>
+        <td scope="col">
+          <div
+            class="form-check form-switch float-start"
+            *ngIf="!loadingStatus && authService.userDetail.id != item.id"
+          >
+            <input
+              mdbCheckbox
+              class="form-check-input"
+              style="cursor: pointer"
+              type="checkbox"
+              id="category_switch_{{ item.id }}"
+              [checked]="item.status == 'active'"
+              (change)="
+                updateStatus(
+                  item.id,
+                  item.status == 'active' ? 'inactive' : 'active'
+                )
+              "
+              container="body"
+              ngbTooltip="{{
+                item.status == 'active' ? 'Inactive' : 'Active'
+              }} User"
+            />
+          </div>
+          <i
+            class="fa-solid fa-pen-to-square"
+            style="cursor: pointer"
+            (click)="openEdit(item)"
+          ></i>
+          <i
+            class="fa-solid fa-trash-can mx-2"
+            style="cursor: pointer"
+            (click)="deleteItem(item.id)"
+          ></i>
+        </td>
+      </tr>
+      <tr id="no_data" *ngIf="!dataList.length">
+        <td colspan="11">No data found</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pull-right mt-2">
+    <pagination-controls
+      class="float-right"
+      id="category_list"
+      (pageChange)="pageChange($event)"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+  </div>
 </div>
